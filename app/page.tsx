@@ -4,73 +4,49 @@ import RestaurantCard from "@/components/RestaurantCard";
 export default async function Home() {
   const restaurants = [
     {
-      title: "Restaurante Japonês",
-      description: "Sushis e sashimis frescos com ingredientes selecionados.",
-      category: "japonês",
-      slug: "restaurante-japones",
+      title: "Hioki Sushi",
+      description: "Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis.",
+      category: "Japonesa",
+      slug: "hioki-sushi",
+      imageSrc: "https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      rating: 4.9,
+      featured: true,
+    },
+    ...Array.from({ length: 5 }).map(() => ({
+      title: "La Dolce Vita Trattoria",
+      description:
+        "A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis.",
+      category: "Italiana",
+      slug: "la-dolce-vita-trattoria",
       imageSrc:
-        "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "Pizzaria",
-      description: "Pizzas artesanais com massa de longa fermentação.",
-      category: "italiano",
-      slug: "pizzaria",
-      imageSrc: "/images/pizzaria.jpg",
-    },
-    {
-      title: "Hamburgueria",
-      description: "Smash burgers suculentos e acompanhamentos crocantes.",
-      category: "american",
-      slug: "hamburgueria",
-      imageSrc:
-        "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "Comida Brasileira",
-      description: "Pratos típicos com sabor caseiro e ingredientes locais.",
-      category: "brasileiro",
-      slug: "comida-brasileira",
-      imageSrc:
-        "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "Doceria",
-      description: "Sobremesas artesanais e cafés especiais.",
-      category: "doces",
-      slug: "doceria",
-      imageSrc:
-        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "Veggie",
-      description: "Opções veganas e vegetarianas equilibradas e saborosas.",
-      category: "vegano",
-      slug: "veggie",
-      imageSrc:
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop",
-    },
+        "https://images.unsplash.com/photo-1505980773458-2e97b3d0bf3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      rating: 4.6,
+    })),
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+    <div className="min-h-screen bg-[#FFEBD9] text-zinc-900">
       <Header />
-      <section className="bg-primary/5">
-        <div className="mx-auto max-w-6xl px-4 py-10">
-          <h1 className="text-3xl font-bold tracking-tight">Restaurantes</h1>
-          <p className="mt-2 text-zinc-600">Escolha por categoria e explore os cardápios.</p>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {restaurants.map((r) => (
-              <RestaurantCard
-                key={r.title}
-                title={r.title}
-                description={r.description}
-                category={r.category}
-                imageSrc={r.imageSrc}
-                slug={r.slug}
-              />
-            ))}
-          </div>
+
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="mt-6 rounded-2xl bg-[#FFE0D3] hero-pattern border border-[#f5c8c0] px-6 py-10 text-center">
+          <div className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-white text-lg font-bold">efood</div>
+          <h1 className="mt-6 text-3xl md:text-4xl font-bold text-primary">Viva experiências gastronômicas no conforto da sua casa</h1>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {restaurants.map((r, i) => (
+            <RestaurantCard
+              key={`${r.slug}-${i}`}
+              title={r.title}
+              description={r.description}
+              category={r.category}
+              imageSrc={r.imageSrc}
+              slug={r.slug}
+              rating={r.rating}
+              featured={r.featured}
+            />
+          ))}
         </div>
       </section>
     </div>

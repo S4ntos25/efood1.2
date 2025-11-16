@@ -2,21 +2,14 @@ import Link from "next/link";
 import CoverImage from "@/components/CoverImage";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 };
 
 export default async function RestaurantePage({ params }: Props) {
-  const { slug } = await params;
+  const { slug } = params;
   const covers: Record<string, { local?: string; remote?: string }> = {
-    "restaurante-japones": { remote: "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=1600&auto=format&fit=crop" },
-    pizzaria: {
-      local: "/images/pizzaria.jpg",
-      remote: "https://images.unsplash.com/photo-1593562332386-3e3a4a6aff91?q=80&w=1600&auto=format&fit=crop",
-    },
-    hamburgueria: { remote: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1600&auto=format&fit=crop" },
-    "comida-brasileira": { remote: "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1600&auto=format&fit=crop" },
-    doceria: { remote: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop" },
-    veggie: { remote: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop" },
+    "hioki-sushi": { remote: "https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" },
+    "la-dolce-vita-trattoria": { remote: "https://images.unsplash.com/photo-1505980773458-2e97b3d0bf3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" },
   };
   const fallback = `https://picsum.photos/seed/${encodeURIComponent(slug)}/1600/900`;
   const cover = covers[slug] ?? { remote: fallback };
